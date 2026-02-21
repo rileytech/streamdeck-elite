@@ -3,11 +3,11 @@ namespace EliteJournalReader.Events
     //When written: another player has joined the wing
     //Parameters:
     //�	Name
-    public class WingAddEvent : JournalEvent<WingAddEvent.WingAddEventArgs>
+    public class WingInviteEvent : JournalEvent<WingInviteEvent.WingInviteEventArgs>
     {
-        public WingAddEvent() : base("WingAdd") { }
+        public WingInviteEvent() : base("WingInvite") { }
 
-        public class WingAddEventArgs : JournalEventArgs
+        public class WingInviteEventArgs : JournalEventArgs
         {
             public string Name { get; set; }
         }
