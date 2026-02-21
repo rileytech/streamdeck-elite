@@ -1,12 +1,11 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
 namespace EliteJournalReader
 {
     [JsonConverter(typeof(EngineeringModifiersCoverter))]
-    public struct EngineeringModifiers
+    public class EngineeringModifiers
     {
         [JsonConverter(typeof(ExtendedStringEnumConverter<ModuleAttribute>))]
         public ModuleAttribute Label { get; set; }
@@ -29,7 +28,7 @@ namespace EliteJournalReader
             var mod = new EngineeringModifiers();
             var obj = JObject.Load(reader);
 
-            mod.Label = (ModuleAttribute)Enum.Parse(typeof(ModuleAttribute), obj.Value<string>(nameof(mod.Label)));
+            mod.Label = Enum.Parse<ModuleAttribute>(obj.Value<string>(nameof(mod.Label)));
             mod.LessIsGood = obj.Value<bool>(nameof(mod.LessIsGood));
 
             var valueToken = obj[nameof(mod.Value)];
